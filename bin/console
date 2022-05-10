@@ -1,0 +1,53 @@
+<?php
+
+$createEntity = null;
+
+define('DS', DIRECTORY_SEPARATOR);
+define('ROOT', realpath(__DIR__ . DS . '..'));
+define("ENTITY_PATH", ROOT . DS . "app" . DS . "entities");
+define("EMM_PATH", ROOT . DS . "bin" . DS . "logic" . DS . "entityMigrationManager");
+spl_autoload_register(function ($className) {
+    $parts = explode("\\", $className);
+    $class = end($parts);
+    array_pop($parts);
+    $path = strtolower(implode(DS, $parts));
+    $path = ROOT . DS . $path . DS . $class . ".php";
+    if (file_exists($path)) {
+        require_once $path;
+    }
+});
+
+function arguments($argv)
+{
+    $functions = ["create:entity", "generate:migrations", "run:migrations", "regenerate:entities"];
+    array_shift($argv);
+
+    $action = $argv[0];
+    if ($action === "create:entity") {
+        $em = new \Bin\Logic\CreateEntity\CreateEntity();
+        $em->createEntity();
+    } elseif ($action === "generate:migrations") {
+        echo "\033[92m\n\nGenerating your migrations\n\n";
+        $createMigration = new \Bin\Logic\CreateMigration\GenerateMigration();
+        if ($createMigration->generateMigrations()) {
+            echo "\033[92mMigrations generated successfuly! You can find them in migrations folder.\n\n";
+            echo "\33[39m";
+        } else {
+            echo "\033[33mGenerating migration failed...\n\n";
+            echo "\33[39m";
+        }
+    } elseif ($action === "regenerate:entities") {
+        $regenerateEntity = new \Bin\Logic\RegenerateEntity\RegenerateEntity();
+        echo "\033[92mEntities regenerated successfully!\nYou can now generate migrations via command generate:migrations and pass data into the database.\n\n";
+        echo "\33[39m";
+        exit;
+    } else {
+        $values = "";
+        foreach ($functions as $value) {
+            $values .= $value . "\n";
+        }
+        echo "\033[31mDid not found function " . $action . ".\nAvaliable functions are: \n\033[33m" . $values;
+        echo "\33[39m";
+    }
+}
+arguments($argv);

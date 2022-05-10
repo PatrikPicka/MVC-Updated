@@ -1,0 +1,26 @@
+{
+  "name": "mvc-updated-backup",
+  "version": "1.0.0",
+  "description": "This is backup file for testing packages",
+  "main": "index.php",
+  "scripts": {
+    "scss": "node-sass --watch scss -o css"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/PatrikPicka/MVC-Updated.git"
+  },
+  "keywords": [
+    "MVC-Framework"
+  ],
+  "author": "Patrik Picka",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/PatrikPicka/MVC-Updated/issues"
+  },
+  "homepage": "https://github.com/PatrikPicka/MVC-Updated#readme",
+  "dependencies": {
+    "bootstrap": "^5.1.3",
+    "node-sass": "^6.0.1"
+  }
+}

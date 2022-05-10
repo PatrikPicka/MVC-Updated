@@ -1,8 +1,8 @@
 <?php
 
-define('REQUEST_URL', '/MVC-Updated/api/');
+define('REQUEST_URL', '/MVC-Updated-Backup/api/');
 define('PROOT', '/MVC-Updated/');
-define("WEB_URL", "127.0.0.1/MVC-Updated/");
+define("WEB_URL", "127.0.0.1/MVC-Updated-Backup/");
 define("DEFAULT_VIEW", "DefaultController");
 
 //nastavení DB params
@@ -17,7 +17,7 @@ define('DB_PASS', '');
 define("SESSION_NAME", "user_ID");
 
 
-define("ACCESS_CONTROL_ORIGIN", "127.0.0.1/MVC-Updated");
+define("ACCESS_CONTROL_ORIGIN", "127.0.0.1/MVC-Updated-Backup");
 
 define('DEFAULT_API_CONTROLLER', 'UserController');
 

@@ -21,7 +21,6 @@ class Router
         } elseif (isset($url[0]) && $url[0] !== "api") {
 
             $controller = ucwords($url[0]) . "Controller";
-
             array_shift($url);
             $action = (isset($url[0])) ? $url[0] . "Action" : "indexAction";
 
@@ -73,7 +72,7 @@ class Router
                 if (method_exists($controller, $action)) {
                     call_user_func_array([$dispatch, $action], $params);
                 } else {
-                    die('That method does not exists in the controller \"' . $controller . '\"');
+                    die('That method does not exists in the api controller \"' . $controller . '\"');
                 }
             }
         }
